@@ -23,6 +23,11 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+// Aidan Darlington
+// Student ID: 21134427
+// Question 1 Additions
+int sematest(int);
+int rwsematest(int);
 
 // ulib.c
 int stat(const char*, struct stat*);

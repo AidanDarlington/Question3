@@ -1,3 +1,10 @@
+# AUT --------------------------
+# Put the lab assignment number
+# and your group number here
+LABNUM=1
+GROUPNUM=1
+#-------------------------------
+
 K=kernel
 U=user
 
@@ -16,6 +23,7 @@ OBJS = \
   $K/swtch.o \
   $K/trampoline.o \
   $K/trap.o \
+  $K/semaphore.o \
   $K/syscall.o \
   $K/sysproc.o \
   $K/bio.o \
@@ -132,6 +140,8 @@ UPROGS=\
 	$U/_grind\
 	$U/_wc\
 	$U/_zombie\
+	$U/_rwsematest\
+	$U/_sematest\
 
 fs.img: mkfs/mkfs README $(UPROGS)
 	mkfs/mkfs fs.img README $(UPROGS)
@@ -169,4 +179,3 @@ qemu: $K/kernel fs.img
 qemu-gdb: $K/kernel .gdbinit fs.img
 	@echo "*** Now run 'gdb' in another window." 1>&2
 	$(QEMU) $(QEMUOPTS) -S $(QEMUGDB)
-

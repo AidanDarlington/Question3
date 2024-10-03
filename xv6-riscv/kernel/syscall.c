@@ -104,6 +104,11 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_wait(void);
 extern uint64 sys_write(void);
 extern uint64 sys_uptime(void);
+// Aidan Darlington
+// Student ID: 21134427
+// Assignment 1 Additions
+extern uint64 sys_sematest(void);
+extern uint64 sys_rwsematest(void);
 
 static uint64 (*syscalls[])(void) = {
 [SYS_fork]    sys_fork,
@@ -127,6 +132,11 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+// Aidan Darlington
+// Student ID: 21134427
+// Question 1 Additions
+[SYS_sematest] sys_sematest,
+[SYS_rwsematest] sys_rwsematest,
 };
 
 void

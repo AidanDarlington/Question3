@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "spinlock.h"
 #include "proc.h"
+#include "kernel/semaphore.h"
 
 uint64
 sys_exit(void)
@@ -94,4 +95,43 @@ sys_uptime(void)
   xticks = ticks;
   release(&tickslock);
   return xticks;
+}
+
+// Aidan Darlington
+// Student ID: 21134427
+// Assignment 1 Additions
+int
+sys_sematest(void)
+{
+  static struct semaphore lk; // Static semaphore variable
+  int cmd, ret = 0; // Command and return value initialization
+  
+  if(argint(0, &cmd) < 0) // Retrieve the command argument
+  return -1;
+
+  switch(cmd) {
+  case 0: initsema(&lk, 5); ret = 5; break; // Initialize semaphore with value 5
+  case 1: ret = downsema(&lk); break; // Perform down operation on semaphore
+  case 2: ret = upsema(&lk); break; // Perform up operation on semaphore
+  }
+  return ret; // Return the result of the operation
+}
+  
+int
+sys_rwsematest(void)
+{
+  static struct rwsemaphore lk; // Static read-write semaphore variable
+  int cmd, ret = 0; // Command and return value initialization
+
+  if(argint(0, &cmd) < 0) // Retrieve the command argument
+  return -1;
+
+  switch(cmd) {
+  case 0: initrwsema(&lk); break; // Initialize read-write semaphore
+  case 1: ret = downreadsema(&lk); break; // Perform down read operation on semaphore
+  case 2: ret = upreadsema(&lk); break; // Perform up read operation on semaphore
+  case 3: downwritesema(&lk); break; // Perform down write operation on semaphore
+  case 4: upwritesema(&lk); break; // Perform up write operation on semaphore
+  }
+  return ret; // Return the result of the operation
 }

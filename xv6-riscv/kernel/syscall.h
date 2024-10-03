@@ -20,3 +20,8 @@
 #define SYS_link   19
 #define SYS_mkdir  20
 #define SYS_close  21
+// Aidan Darlington
+// Student ID: 21134427
+// Question 1 Additions
+#define SYS_sematest  22
+#define SYS_rwsematest  23

@@ -36,3 +36,8 @@ entry("getpid");
 entry("sbrk");
 entry("sleep");
 entry("uptime");
+# Aidan Darlington
+# StudentID: 21134427
+# Question 1 Additions
+entry("sematest");
+entry("rwsematest");
